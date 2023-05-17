@@ -7,7 +7,8 @@ command: >-
 inputs:
   training_data:
     type: uri_folder
-    path: azureml:mslearn-mlops-diabetes:1
+    # default path is the development data
+    path: azureml:mslearn-mlops-diabetes-dev:1
     mode: ro_mount
   reg_rate: 0.05
 environment: azureml:AzureML-sklearn-0.24-ubuntu18.04-py37-cpu@latest
