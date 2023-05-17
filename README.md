@@ -1,4 +1,4 @@
-# Azure ML Course
+# Azure MLOps Course
 
 Following [End-to-end machine learning operations (MLOps) with Azure Machine Learning](https://learn.microsoft.com/en-us/training/paths/build-first-machine-operations-workflow/)
 
