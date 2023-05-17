@@ -25,7 +25,7 @@ jobs:
 
       - name: Set Workspace and RG Defaults
         run: |
-          az configure --defaults workspace=${{ vars.AZURE_WORKSPACE_NAME }}}
+          az configure --defaults workspace=${{ vars.AZURE_WORKSPACE_NAME }}
           az configure --defaults group=${{ vars.AZURE_RESOURCE_GROUP }}
 
       - name: Trigger Azure Machine Learning Job
