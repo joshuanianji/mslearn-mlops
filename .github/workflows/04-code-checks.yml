@@ -16,10 +16,8 @@ jobs:
         with:
           python-version: "3.7"
 
-      - name: Run linting tests
-        run: |
-          pip install -r requirements.txt
-          flake8 src/model/
+      - name: flake8 Lint
+        uses: py-actions/flake8@v2
 
   test:
     runs-on: ubuntu-latest
