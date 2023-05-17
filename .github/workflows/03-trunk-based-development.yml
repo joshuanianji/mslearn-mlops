@@ -1,9 +1,6 @@
 name: Run on PRs
 
-on:
-  push:
-    branches:
-      - main
+on: [pull_request]
 
 jobs:
   placeholder:
