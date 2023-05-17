@@ -16,8 +16,13 @@ jobs:
         with:
           python-version: "3.7"
 
-      - name: flake8 Lint
-        uses: py-actions/flake8@v2
+      - name: Install Python dependencies
+        run: pip install flake8
+  
+      - name: Run linters
+        uses: wearerequired/lint-action@v2
+        with:
+          flake8: true
 
   test:
     runs-on: ubuntu-latest
