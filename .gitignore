@@ -127,3 +127,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+
+# secret.json contains the `AZURE_CREDENTIALS` we use for Github Actions
+secret.json

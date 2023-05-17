@@ -15,7 +15,8 @@
 		"vscode": {
 			"extensions": [
 				"ms-toolsai.jupyter",
-				"ms-toolsai.vscode-ai"
+				"ms-toolsai.vscode-ai",
+				"github.vscode-github-actions"
 			]
 		}
 	}
