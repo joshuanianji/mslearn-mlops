@@ -9,5 +9,6 @@ Following [End-to-end machine learning operations (MLOps) with Azure Machine Lea
 
 ```bash
 python -m venv env
+source env/bin/activate
 pip install -r requirements.txt
 ```
