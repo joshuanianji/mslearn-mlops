@@ -8,6 +8,6 @@ $schema: https://azuremlschemas.azureedge.net/latest/data.schema.json
 # ADLS gen2: abfss://<file_system>@<account_name>.dfs.core.windows.net/<path>/
 # Datastore: azureml://datastores/<data_store_name>/paths/<path>
 type: uri_folder
-name: mslearn-mlops-diabetes-dev
-description: "Development diabetes data for my MSLearn MLOps course"
+name: mslearn-mlops-diabetes-prod
+description: "Production diabetes data for my MSLearn MLOps course"
 path: "./data"

@@ -1,0 +1,63 @@
+name: Train Model on Dev and Prod
+
+on:
+  push:
+    branches:
+      - main
+  # for me to test when not on the main branch
+  workflow_dispatch:
+
+jobs:
+  train-dev:
+    runs-on: ubuntu-latest
+    environment: dev
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v3
+
+      - name: Install az ml extension
+        run: az extension add -n ml -y
+
+      - name: Azure login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Set Workspace and RG Defaults
+        run: |
+          az configure --defaults workspace=${{ vars.AZURE_WORKSPACE_NAME }}}
+          az configure --defaults group=${{ vars.AZURE_RESOURCE_GROUP }}
+
+      - name: Trigger Azure Machine Learning Job
+        # by default, this will run the development job
+        run: |
+          az ml job create --file src/job.yml --stream \
+            -n diabetes-data-mslearn-mlops-dev
+  
+  train-prod:
+    runs-on: ubuntu-latest
+    environment: prod
+    needs: train-dev
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v3
+      
+      - name: Install az ml extension
+        run: az extension add -n ml -y
+      
+      - name: Azure login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+      
+      - name: Set Workspace and RG Defaults
+        run: |
+          az configure --defaults workspace=${{ vars.AZURE_WORKSPACE_NAME }}}
+          az configure --defaults group=${{ vars.AZURE_RESOURCE_GROUP }}
+
+      - name: Trigger Azure Machine Learning Job
+        # by default, this will run the production job
+        run: |
+          az ml job create --file src/job.yml --stream \
+            --set inputs.training_data.path=${{ vars.TRAINING_DATA_PATH }} \
+            -n diabetes-data-mslearn-mlops-prod
