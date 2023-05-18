@@ -26,4 +26,4 @@ jobs:
 
       - name: Create Online Deployment
         run: |
-          az ml online-deployment create -f infra/deploy-model.yml --all-traffic
+          az ml online-deployment update -f infra/deploy-model.yml
