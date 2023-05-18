@@ -1,0 +1,29 @@
+name: Deploy Latest Model to Endpoint
+
+on:
+  workflow_call:
+
+jobs:
+  deploy-latest:
+    runs-on: ubuntu-latest
+    environment: dev
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v3
+
+      - name: Install az ml extension
+        run: az extension add -n ml -y
+
+      - name: Azure login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Set Workspace and RG Defaults
+        run: |
+          az configure --defaults workspace=${{ vars.AZURE_WORKSPACE_NAME }}
+          az configure --defaults group=${{ vars.AZURE_RESOURCE_GROUP }}
+
+      - name: Create Online Deployment
+        run: |
+          az ml online-deployment create -f infra/deploy-model.yml --all-traffic
